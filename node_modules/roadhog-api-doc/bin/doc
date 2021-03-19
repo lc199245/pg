@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+
+const start = require('../lib/start');
+const build = require('../lib/build');
+const staticFunc = require('../lib/static');
+const pkg = require('../package.json');
+
+program.version(pkg.version)
+  .option('start', 'Start docs website.')
+  .option('build', 'Build docs.')
+  .option('static', 'Transfer current project request.js(dva mode) to support static mock data.')
+  .parse(process.argv);
+
+if (program.start) {
+  start(process.argv);
+}
+
+if (program.build) {
+  build(process.argv);
+}
+
+if (program.static) {
+  staticFunc(process.argv);
+}
